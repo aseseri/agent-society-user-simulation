@@ -18,7 +18,7 @@ Our objective was to build a **User Simulation Agent** capable of generating rev
 Our agent improves upon standard zero-shot generation using a modular architecture located in `src/`:
 
 ### 1. Chain-of-Thought (CoT) Reasoning
-*File: `src/run_cot_agent.py`*
+*File: `src/run_simulation_agent.py` (Orchestration) & `src/prompt_utils.py` (Prompts)*
 We implemented a structured **3-step reasoning process** to guide the LLM:
 1.  **User Analysis:** Classifies the user (e.g., "Generous" vs. "Critical") based on historical rating distributions.
 2.  **Item Assessment:** Evaluates the target business's reputation from public metrics.
@@ -53,7 +53,7 @@ We evaluated the agent using the AgentSociety Challenge benchmark metrics on the
 ## Repository Structure
 
 * **`src/`**: Core agent logic.
-    * `run_cot_agent.py`: Main entry point containing the `CoTAgent` class.
+    * `run_simulation_agent.py`: The main agent that integrates CoT, RAG, Memory, and Style modules.
     * `user_pattern_analysis.py`: Logic for extracting writing style constraints.
     * `smart_review_selection.py`: Weighted embedding logic for context management.
     * `retrieve_expanded_context.py`: RAG logic for query expansion.
@@ -95,10 +95,10 @@ python scripts/process_yelp_data.py --input_dir data/raw --output_dir data/proce
 
 ### 2. Run Simulation
 
-To run the CoT Agent on the user simulation task:
+To run the complete User Simulation Agent (with CoT, RAG, and Style Enforcement enabled):
 
 ```bash
-python src/run_cot_agent.py --num_tasks 10 --output results/cot_run.json
+python src/run_simulation_agent.py --num_tasks 10 --output results/final_run.json
 
 ```
 
