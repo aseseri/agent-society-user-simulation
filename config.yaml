@@ -1,0 +1,24 @@
+# Configuration for CS245 AgentSociety Project
+# Non-secret settings only (API keys go in .env)
+
+# THIS IS A TEMPLATE FILE, THE VARIABLE VALUES HERE ARE EXAMPLES
+
+
+
+
+# Model settings
+model:
+  name: gpt-3.5-turbo
+  temperature: 0.7
+  max_tokens: 500
+
+# Data paths
+data:
+  processed_dir: data/processed/yelp
+  raw_dir: data/raw/yelp
+
+# Simulation settings
+simulation:
+  num_tasks: 100
+  device: cpu
+  cache_enabled: true
