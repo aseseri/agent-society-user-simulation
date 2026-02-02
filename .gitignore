@@ -1,0 +1,95 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+cs245_agentsociety/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Data files (too large for git)
+data/raw/
+data/processed/
+*.json
+*.csv
+*.parquet
+
+# Model checkpoints and outputs
+models/
+checkpoints/
+outputs/
+results/
+logs/
+*.pt
+*.pth
+*.ckpt
+
+# AgentSocietyChallenge is included in repo (do not ignore)
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# API Keys and secrets
+.env.local
+*.key
+secrets.txt
+
+# Experiment outputs
+experiments/
+wandb/
+
+# Documentation build files
+docs/_build/
+docs/.doctrees/
+
+# Keep important data structure files
+!data/.gitkeep
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Cursor IDE
+.cursor/
+
+# Cache/Database (from memory modules)
+db/
