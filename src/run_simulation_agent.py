@@ -33,7 +33,7 @@ from websocietysimulator.agent.modules.memory_modules import MemoryDILU
 USE_COT_PROMPTING = True  # Chain-of-Thought prompting
 USE_ITERATIVE_RETRIEVAL = True  # Iterative Retrieval via query expansion
 USE_SELECTIVE_MEMORY = True  # Selective review filtering before memory storage
-USE_STYLE_ENFORCEMENT = False  # User pattern analysis for style enforcement
+USE_STYLE_ENFORCEMENT = True  # User pattern analysis for style enforcement
 
 # prompt improvements
 from final_proj_code.prompt_utils import build_cot_prompt, build_baseline_prompt
