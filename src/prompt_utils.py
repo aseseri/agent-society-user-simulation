@@ -3,8 +3,6 @@ Prompt Engineering Utilities for User Modeling Agent
 
 This module contains reusable prompt templates and builders for improving
 the baseline agent's performance through Chain-of-Thought (CoT) reasoning.
-
-Author: Evan Li
 """
 
 
