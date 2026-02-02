@@ -30,18 +30,18 @@ from websocietysimulator.agent.modules.memory_modules import MemoryDILU
 # ============================================================================
 # feature flags, use these to control which improvements are enabled
 # ============================================================================
-USE_COT_PROMPTING = True  # Evan: Chain-of-Thought prompting
-USE_ITERATIVE_RETRIEVAL = True  # Kelly: Iterative Retrieval via query expansion
-USE_SELECTIVE_MEMORY = True  # Rita: Selective review filtering before memory storage
-USE_STYLE_ENFORCEMENT = False  # Abby: User pattern analysis for style enforcement
+USE_COT_PROMPTING = True  # Chain-of-Thought prompting
+USE_ITERATIVE_RETRIEVAL = True  # Iterative Retrieval via query expansion
+USE_SELECTIVE_MEMORY = True  # Selective review filtering before memory storage
+USE_STYLE_ENFORCEMENT = False  # User pattern analysis for style enforcement
 
-# Evan prompt improvements
+# prompt improvements
 from final_proj_code.prompt_utils import build_cot_prompt, build_baseline_prompt
-# Kelly iterative retrieval
+# iterative retrieval
 from final_proj_code.retrieve_expanded_context import retrieve_expanded_context
-# Rita selective memory storage
+# selective memory storage
 from final_proj_code.smart_review_selection import select_top_k_reviews
-# Abby style enforcement
+# style enforcement
 from final_proj_code.user_pattern_analysis import analyze_user_pattern
 
 class PlanningBaseline(PlanningBase):
@@ -178,13 +178,13 @@ class BaselineAgent(SimulationAgent):
             plan = self.planning(task_description=self.task)  # self.task provided by simulator
 
             # Step 2: Execute the plan - gather user and business information
-            user_stats_text = ""  # Abby: Style enforcement text
+            user_stats_text = ""  # Style enforcement text
             for sub_task in plan:
                 if 'user' in sub_task['description']:
                     # Get user profile (review history, average rating, etc.)
                     # self.interaction_tool is provided by the simulator
                     user_data = self.interaction_tool.get_user(user_id=self.task['user_id'])
-                    # Abby: Analyze user pattern for style enforcement (before converting to string)
+                    # Analyze user pattern for style enforcement (before converting to string)
                     if USE_STYLE_ENFORCEMENT:
                         user_stats_text = analyze_user_pattern(user_data)
                     user = str(user_data)
@@ -197,7 +197,7 @@ class BaselineAgent(SimulationAgent):
             reviews_item = self.interaction_tool.get_reviews(item_id=self.task['item_id'])
             reviews_user = self.interaction_tool.get_reviews(user_id=self.task['user_id'])
             
-            # Rita: Selective memory storage - filter reviews before storing
+            # Selective memory storage - filter reviews before storing
             if USE_SELECTIVE_MEMORY:
                 selected_reviews = select_top_k_reviews(
                     business_reviews=reviews_item,
@@ -215,7 +215,7 @@ class BaselineAgent(SimulationAgent):
             # Step 4: Get similar review from memory
             review_similar = ""
             
-            # Kelly: Use iterative retrieval for better context, or default single retrieval
+            # Use iterative retrieval for better context, or default single retrieval
             if USE_ITERATIVE_RETRIEVAL:
                 review_similar = retrieve_expanded_context(
                     llm=self.llm,
@@ -234,7 +234,7 @@ class BaselineAgent(SimulationAgent):
             else:
                 task_description = build_baseline_prompt(user, business, review_similar)
             
-            # Abby: Append style enforcement instructions to prompt
+            # Append style enforcement instructions to prompt
             if USE_STYLE_ENFORCEMENT and user_stats_text:
                 task_description = task_description + "\n" + user_stats_text
             
