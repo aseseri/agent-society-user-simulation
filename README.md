@@ -54,14 +54,12 @@ We evaluated the agent using the AgentSociety Challenge benchmark metrics on the
 
 * **`src/`**: Core agent logic.
     * `run_cot_agent.py`: Main entry point containing the `CoTAgent` class.
-    * `user_pattern_analysis.py`: Logic for extracting writing style constraints.
-    * `smart_review_selection.py`: Weighted embedding logic for context management.
 * **`websocietysimulator/`**: The simulation environment framework (Required dependency).
 * **`scripts/`**: Utilities.
     * `process_yelp_data.py`: Pipeline to clean and format raw Yelp Open Dataset files.
 * **`docs/`**: Documentation.
     * `simulation_details.md`: Technical breakdown of the simulator inputs/outputs.
-    * `Final_Report.pdf`: Presentation slides covering methodology and ablation studies.
+    * `presentation.pdf`: Presentation slides covering methodology and ablation studies.
 
 ## Installation
 
